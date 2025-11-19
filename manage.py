@@ -2,16 +2,12 @@ import os
 import sys
 
 def main():
-
-
     try:
         import oracledb
         oracledb.version = "8.3.0"
         sys.modules["cx_Oracle"] = oracledb
     except ImportError:
         pass
-
-
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
     try:
         from django.core.management import execute_from_command_line
