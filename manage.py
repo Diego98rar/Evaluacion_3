@@ -1,20 +1,16 @@
-#!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
 import os
 import sys
 
 def main():
-    """Run administrative tasks."""
-    
-    # --- INICIO CONFIGURACIÓN ORACLEDB ---
+
+
     try:
         import oracledb
-        # Hacemos que oracledb se comporte como cx_Oracle para Django
         oracledb.version = "8.3.0"
         sys.modules["cx_Oracle"] = oracledb
     except ImportError:
         pass
-    # --- FIN CONFIGURACIÓN ORACLEDB ---
+
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
     try:
