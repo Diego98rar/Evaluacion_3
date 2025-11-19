@@ -11,11 +11,10 @@ class Sala(models.Model):
         return self.nombre
 
     def esta_disponible(self):
-        """Verifica si la sala tiene una reserva activa AHORA."""
         ahora = timezone.now()
         reservas_activas = self.reserva_set.filter(
-            hora_inicio__lte=ahora, # Que empezó en el pasado
-            hora_termino__gte=ahora,  # Y que aún no termina
+            hora_inicio__lte=ahora, 
+            hora_termino__gte=ahora, 
             activa=True
         )
         return not reservas_activas.exists()
