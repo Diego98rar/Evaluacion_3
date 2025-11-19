@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Sala Reservada{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+            <div class="card shadow-sm">
+                <div class="card-header"><h1 class="h3 mb-0">Sala: {{ sala.nombre }}</h1></div>
+                <div class="card-body p-4">
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Sala Reservada</h4>
+                        <p class="mb-0">Esta sala se encuentra reservada actualmente.</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between px-0">
+                            <strong>Hora de Inicio:</strong>
+                            <span>{{ reserva.hora_inicio|date:"d/m/Y H:i" }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between px-0">
+                            <strong>Hora de Término:</strong>
+                            <span>{{ reserva.hora_termino|date:"d/m/Y H:i" }}</span>
+                        </li>
+                    </ul>
+                    <a href="{% url 'lista_salas' %}" class="btn btn-primary mt-3">Volver a la lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

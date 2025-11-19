@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Salas{% endblock %}
+{% block content %}
+    <h1 class="mb-3">Salas de Estudio Disponibles</h1>
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="p-3">Sala</th>
+                            <th class="p-3">Capacidad</th>
+                            <th class="p-3">Estado</th>
+                            <th class="p-3">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sala in salas %}
+                        <tr>
+                            <td class="p-3"><strong>{{ sala.nombre }}</strong></td>
+                            <td class="p-3">{{ sala.capacidad_maxima }} personas</td>
+                            {% if sala.esta_disponible %}
+                                <td class="p-3"><span class="badge bg-success">Disponible</span></td>
+                                <td class="p-3"><a href="{% url 'detalle_sala' sala.pk %}" class="btn btn-primary btn-sm">Reservar</a></td>
+                            {% else %}
+                                <td class="p-3"><span class="badge bg-danger">Reservada</span></td>
+                                <td class="p-3"><a href="{% url 'detalle_sala' sala.pk %}" class="btn btn-secondary btn-sm">Ver Detalle</a></td>
+                            {% endif %}
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center p-4">No hay salas habilitadas por el administrador.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
